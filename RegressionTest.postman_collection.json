@@ -1,0 +1,195 @@
+{
+	"info": {
+		"_postman_id": "0172652e-60fa-488b-be52-bae7e507b679",
+		"name": "RegressionTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22958018"
+	},
+	"item": [
+		{
+			"name": "Test 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//postman.setNextRequest(\"Test 3\")\r",
+							"pm.test(\"Check Status Code is 200 - Test 1\",function(){\r",
+							"if(pm.response.code==200){\r",
+							" postman.setNextRequest(\"Test 4\")\r",
+							"}\r",
+							"else if(pm.response.code==202){\r",
+							" postman.setNextRequest(\"Test 2 \")\r",
+							"}\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.makemytrip.com/flight/search?itinerary=MAA-BLR-26/08/2022_BLR-MAA-27/08/2022&tripType=R&paxType=A-1_C-0_I-0&intl=false&cabinClass=E&ccde=IN&lang=eng",
+					"protocol": "https",
+					"host": [
+						"www",
+						"makemytrip",
+						"com"
+					],
+					"path": [
+						"flight",
+						"search"
+					],
+					"query": [
+						{
+							"key": "itinerary",
+							"value": "MAA-BLR-26/08/2022_BLR-MAA-27/08/2022"
+						},
+						{
+							"key": "tripType",
+							"value": "R"
+						},
+						{
+							"key": "paxType",
+							"value": "A-1_C-0_I-0"
+						},
+						{
+							"key": "intl",
+							"value": "false"
+						},
+						{
+							"key": "cabinClass",
+							"value": "E"
+						},
+						{
+							"key": "ccde",
+							"value": "IN"
+						},
+						{
+							"key": "lang",
+							"value": "eng"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 2 ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"postman.setNextRequest(null)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{$randomUserName}}\",\r\n    \"job\": \"{{$randomJobType}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"postman.setNextRequest(\"Test 4\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users/:version",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						":version"
+					],
+					"variable": [
+						{
+							"key": "version",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test 4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"postman.setNextRequest(\"Test 2 \")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users?page=2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
